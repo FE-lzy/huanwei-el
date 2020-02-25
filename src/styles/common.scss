@@ -1,0 +1,18 @@
+// 输入框的样式
+
+// 下拉框
+.el-select {
+  width: 100%;
+}
+// 时间检索器
+.el-date-editor.el-input,
+.el-date-editor.el-input__inner {
+  width: 100%;
+}
+.el-form--label-top .el-form-item__label {
+  padding: 0 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+.el-checkbox__label {
+  color: #fff;
+}

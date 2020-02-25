@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+// flex布局，定义方向
+@mixin flex($direction: column, $inline: block,$justifyContent:flex-start) {
+  display: if($inline == block, flex, inline-flex); 
+  flex-direction: $direction;
+  flex-wrap: wrap;
+  justify-content:$justifyContent
+}
+@mixin positiondiv($position: absolute, $top: 0, $left: 0, $right: 0, $bottom: 0, $overflow: auto) {
+  position: $position;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
+  overflow: $overflow;
+}
+
+@mixin newflex($direction: row, $wrap: nowrap, $main: stretch, $cross: stretch) {
+  display: flex; 
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $main;
+  align-items: $cross;
+}
+
+@mixin flexfixitem($width: 100%, $height:100%, $overflow: auto) {
+  width: $width;
+  flex: none;
+  height: $height;
+  overflow: $overflow;  
+}
+
+@mixin flexautoitem($width: 100%, $height:100%, $overflow: auto) {
+  width: $width;
+  flex: auto;
+  height: $height;
+  overflow: $overflow;  
+}

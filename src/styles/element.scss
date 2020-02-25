@@ -1,0 +1,111 @@
+@import "./layout.scss";
+@import "./common.scss";
+
+$collageHeaderColor: #1e202f;
+$themecolor: #4fd7a7;
+
+@mixin btn(
+  $size: 14px,
+  $color: #fff,
+  $bgcolor: $themecolor,
+  $height: 32px,
+  $padding: 10px,
+  $radius: 5px,
+  $minWidth: 88px,
+  $bordercolor: $themecolor
+) {
+  padding: $padding 0;
+  height: $height;
+  background-color: $bgcolor;
+  border-radius: $radius;
+  border: 1px solid $bordercolor;
+  font-size: $size;
+  color: $color;
+  text-align: center;
+  line-height: 1;
+  display: inline-block;
+  min-width: $minWidth;
+}
+// 列表
+@mixin list($direction: column, $inline: block, $justifyContent: flex-start) {
+  @include flex($direction, $inline, $justifyContent);
+}
+
+// 面板
+@mixin panel(
+  $bgcolor: #fff,
+  $padding: 0,
+  $margin: 20px 0,
+  $height: 112px,
+  $txtPadding: 0 32px,
+  $color: #000,
+  $fontSize: 14px
+) {
+  background: $bgcolor;
+  padding: $padding;
+  margin: $margin;
+  height: $height;
+}
+
+// 搜索框样式
+@mixin collageSearch($maxWidth: 320px, $minWidth: 220px) {
+  width: 18%;
+  height: auto;
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  z-index: 500;
+  max-width: $maxWidth;
+  min-width: $minWidth;
+}
+// 图例示意图
+@mixin collageIconSign($width:300px) {
+  height: auto;
+  position: absolute;
+  top: 70px;
+  right: 60px;
+  z-index: 500;
+  width: $width;
+}
+/* 搜索框的内容体 */
+@mixin collageStyle($opacity, $padding) {
+  background: $collageHeaderColor !important;
+  opacity: $opacity;
+  padding: $padding;
+}
+@mixin carList($color: #fff, $opacity: 0.5, $fontSize: 14px, $height: 36px) {
+  .carList {
+    .el-row {
+      color: $color;
+      opacity: $opacity;
+      font-size: $fontSize;
+      &:hover {
+        background: rgba(79, 215, 167, 0.2) !important;
+        border: none;
+      }
+      height: $height;
+      line-height: $height;
+      border-bottom: 1px solid rgba(100, 35, 35, 0.2);
+    }
+    .carIcon {
+      text-align: right;
+    }
+    .carState {
+      text-align: center;
+      // padding-right: 8px;
+    }
+    .carName {
+      text-align: left;
+      padding-left: 5px;
+    }
+  }
+}
+
+@mixin tableTitle() {
+  height: 34px;
+  line-height: 34px;
+  background: $collageHeaderColor;
+  min-width: 970px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}

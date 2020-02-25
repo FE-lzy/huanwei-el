@@ -1,0 +1,325 @@
+@import "./main.scss";
+
+@mixin icon($marginright) {
+  display: block;
+  @include flex($main: center, $cross: center);
+  margin-right: $marginright;
+}
+
+@mixin icondiv($height: 36px, $marginright: 5px) {
+  height: $height;
+  @include flex($main: flex-start, $cross: center);
+  .icon {
+    @include icon($marginright: $marginright);
+  }
+}
+
+@mixin mainlist(
+  $mainwidth: 100%,
+  $mainpadding: 0 10px,
+  $titletype: flex-start,
+  $titleheight: 36px,
+  $titleiconmargin: 5px,
+  $listheight: 100%,
+  $listtype: space-around
+) {
+  width: $mainwidth;
+  .title {
+    padding: $mainpadding;
+    @include icondiv($height: $titleheight, $marginright: $titleiconmargin);
+  }
+  .list {
+    padding: $mainpadding;
+    height: $listheight;
+    .item {
+      width: 100%;
+      border-bottom: 1px solid;
+      border-bottom-color: rgba($color: #fff, $alpha: 0.1);
+      @include flex($main: $listtype, $cross: center);
+      .itemicon {
+        @include icondiv($height: $titleheight, $marginright: $titleiconmargin);
+      }
+      .itemmenu {
+        @include flex($main: flex-end, $cross: center);
+      }
+    }
+  }
+}
+
+@mixin inputitem($width: 100%, $br: 5px, $bcg: #fff) {
+  width: $width;
+  background-color: #fff;
+  @include flex();
+  .inputitemtitle,
+  .inputitemmenu {
+    @include flexfixitem($width: auto);
+    border: none;
+    background-color: $bcg;
+    border: 1px #ccc solid;
+    padding: 0 5px;
+  }
+  .inputitemtitle {
+    border-radius: $br 0 0 $br;
+    border-right: none;
+  }
+  .inputitemmain {
+    @include flexautoitem();
+    background-color: $bcg;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    border: 1px #ccc solid;
+    line-height: 32px;
+    padding: 0 5px;
+    border-top-left-radius: $br;
+    border-top-right-radius: $br;
+    border-bottom-right-radius: $br;
+    border-bottom-left-radius: $br;
+    padding: 2px 5px;
+  }
+  .inputitemmainwithmenu {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+    padding: 2px 10px;
+  }
+  .inputitemmenu {
+    border-radius: 0 $br $br 0;
+    border-left: none;
+  }
+  .inputitemtitle + .inputitemmain {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+}
+
+@mixin maindiv($leftright: 20px) {
+  border-radius: 5px;
+  @include flex($direction: column);
+  .title {
+    @include flex($main: space-between);
+    @include flexfixitem($height: 61px);
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 $leftright;
+    border-bottom: 1px #ccc solid;
+    h4 {
+      padding: 0;
+      margin: 0;
+    }
+    .subtitle {
+      p {
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 60px;
+        color: #ccc;
+      }
+    }
+  }
+  .mainarea {
+    @include flexautoitem();
+  }
+}
+
+@mixin mappop($width: 270px, $bc: #344053, $op: 0.9) {
+  width: $width;
+  opacity: $op;
+  position: relative;
+  // z-index: 10000;
+  .mappop_link {
+    cursor: pointer;
+  }
+  .mappop_paddingdiv {
+    width: 100%;
+    height: 10px;
+  }
+  .mappop_fixmenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    padding: 2px 2px 5px 5px;
+    .mappop_fixmenuicon {
+      font-size: 15px;
+      padding: 5px;
+    }
+  }
+  .mappop_onlyline{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    &.mappop_withclose{
+      padding-right: 20px;
+    }
+  }
+  .mappop_title {
+    line-height: 34px;
+    padding: 10px;
+    background-color: #4fd7a7;
+    color: #fff;
+    @include flex($main: space-between);
+    p {
+      font-size: 15px;
+    }
+  }
+  .mappop_img {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .mappop_area {
+    background-color: $bc;
+  }
+  .mappop_menulist {
+    padding: 5px 10px;
+    @include flex($main: space-between);
+    .mappop_menuitem {
+      width: auto;
+      p {
+        font-size: 14px;
+        line-height: 32px;
+        text-align: center;
+        color: #4fd7a7;
+      }
+    }
+  }
+  .mappop_list {
+    padding: 2px 10px;
+    @include flex();
+    .mappop_item {
+      color: rgba($color: #fff, $alpha: 0.7);
+      font-size: 13px;
+      @include flex($cross: center);
+      width: 100%;
+      padding: 5px 0;
+      .mappop_itemtitle {
+        @include flexfixitem($width: auto);
+        @include flex($cross: center);
+        .mappop_itemicon {
+          font-size: 14px;
+        }
+        .mappop_itemname {
+          line-height: 22px;
+        }
+        .mappop_itemicon + .mappop_itemname {
+          margin-left: 3px;
+        }
+        margin-right: 10px;
+      }
+      .mappop_itemcontent {
+        @include flex();
+        color: rgba($color: #fff, $alpha: 0.9);
+        line-height: 22px;
+      }
+      .js_address{
+        color: rgba($color: #fff, $alpha: 0.7);
+      }
+    }
+  }
+  .mappop_border {
+    border-bottom: 1px solid;
+    border-color: rgba($color: #fff, $alpha: 0.4);
+    color: rgba($color: #000000, $alpha: 0.7);
+  }
+  .mappop_angeldiv {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    @include flex($main: center);
+    .mappop_angel {
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: $bc;
+    }
+  }
+}
+
+
+
+@mixin baseeditarea() {
+  width: 100%;
+  height: 100%;
+  @include flex();
+  padding: 60px 10px 10px 10px;
+  background-color: #f0f2f5;
+  .menuarea {
+    @include flexfixitem($width: 300px);
+    @include maindiv();
+    margin-right: 10px;
+    background-color: #fff;
+  }
+  .mainarea {
+    padding: 10px 10px;
+  }
+  .buildform {
+    width: 100%;
+    .el-form-item {
+      margin-bottom: 18px;
+    }
+    .middlebtn >>> .el-form-item__content{
+      margin-left: 0 !important;
+      width: 100%;
+      .el-button{
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+  .maparea {
+    @include flexautoitem();
+    @include maindiv();
+    background-color: #fff;
+  }
+  .mapin,.mapview {
+    width: 100%;
+    height: 100%;
+  }
+  .mapin {
+    padding: 2px;
+    position: relative;
+  }
+  .mapfixarea {
+    @include positiondiv($top: 10px, $left: 10px, $right: 10px, $bottom: 10px);
+    z-index: 200;
+    .mapfixinput {
+      .mapfixinputin {
+        @include flex();
+        width: 360px;
+        .inputitem {
+          @include inputitem();
+          .searchmenu {
+            padding: 0 10px;
+            border-radius: 5px;
+            border-left: 1px #ccc solid;
+          }
+        }
+      }
+    }
+  }
+  .menutypearea {
+    right: auto;
+    bottom: auto;
+  }
+  .menushowarea {
+    left: auto;
+    bottom: auto;
+  }
+  .leftnone {
+    border-left: none !important;
+    border-radius: 0 !important;
+  }
+  .rightnone {
+    border-right: none !important;
+    border-radius: 0 !important;
+  }
+  .btnbordernone{
+    border-right: none !important;
+    border-radius: 0 5px 5px 0 !important;
+    border-color: #4fd7a7 !important;
+  }
+  
+}
